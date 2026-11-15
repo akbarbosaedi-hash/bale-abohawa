@@ -7,12 +7,10 @@ from collections import defaultdict
 from flask import Flask
 import aqipy
 
-# ایمپورت‌های دقیق و استاندارد pyrobale
+pyrobale
 from pyrobale import Client
-from pyrobale.types import Message, CallbackQuery
-from pyrobale.types.keyboard import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrobale.objects import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
-# ─── وب‌سرور ───
 app = Flask(__name__)
 
 @app.route('/')
@@ -24,7 +22,6 @@ def run_flask():
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
 
-# ─── دیتای شهرها ───
 CITIES_FILE = "cities.json"
 if not os.path.exists(CITIES_FILE):
     try:
@@ -49,7 +46,6 @@ if not os.path.exists(CITIES_FILE):
 with open(CITIES_FILE, "r", encoding="utf-8") as f:
     PROVINCES = json.load(f)
 
-# ─── توابع ───
 history = defaultdict(list)
 
 def aqi_level(aqi: int):
@@ -89,7 +85,6 @@ def cities_keyboard(province: str):
     buttons.append([InlineKeyboardButton(text="🔙 بازگشت", callback_data="back")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-# ─── ربات ───
 BOT_TOKEN = os.getenv("BALE_BOT_TOKEN")
 bot = Client(BOT_TOKEN)
 
