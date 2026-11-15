@@ -1,3 +1,4 @@
 pyrobale
 aqms-iran
 flask
+requests
