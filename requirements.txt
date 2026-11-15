@@ -1,0 +1,3 @@
+baleRobot>=1.0.0
+aqms-iran>=0.0.2
+Flask>=3.0.0
